@@ -4,7 +4,6 @@ import { PropsWithChildren, useEffect } from "react";
 import FrameSDK from "@farcaster/frame-sdk";
 import { farcasterFrame } from "@farcaster/frame-wagmi-connector";
 import { useConnect } from "wagmi";
-import { config } from "./Web3Provider";
 
 export function FarcasterFrameProvider({ children }: PropsWithChildren) {
   const { connect } = useConnect();
