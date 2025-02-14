@@ -434,10 +434,7 @@ const SendLub = ({
           ) : (
             <>
               <FaGift className="w-4 h-4" />
-              <span>
-                Send {buyAmount} lub •{" "}
-                {(buyAmount * Number(pricePerLub)).toFixed(4)} ETH
-              </span>
+              <span>Gift {buyAmount} lub</span>
             </>
           )}
         </button>

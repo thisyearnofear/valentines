@@ -12,7 +12,7 @@ const Footer = () => {
       </a>{" "}
       &{" "}
       <a
-        href="https://github.com/yilverdeja/givemelove-react"
+        href="https://givemelove.netlify.app"
         target="_blank"
         rel="noopener noreferrer"
         className="underline hover:text-gray-900 dark:hover:text-gray-200"
