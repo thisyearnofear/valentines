@@ -18,6 +18,7 @@ import UpdateText from "../components/UpdateText";
 import Canvas from "../components/Canvas";
 import WalletConnect from "../components/WalletConnect";
 import Alert from "../components/Alert";
+import LubModal from "../components/LubModal";
 
 interface Data {
   count: number;
@@ -44,6 +45,7 @@ export default function Home() {
     }>
   >([]);
   const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getData = useCallback(() => {
     getDoc(counterRef)
@@ -198,7 +200,13 @@ export default function Home() {
       />
       <div className="flex flex-col justify-evenly items-center min-h-screen m-auto px-5 select-none z-10 text-black dark:text-white">
         <div className="flex flex-row justify-between w-full max-w-3xl z-10">
-          <div className="text-sm">lub-u</div>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="px-4 py-2 rounded-xl bg-white/90 dark:bg-gray-900/90 hover:bg-pink-100 dark:hover:bg-pink-900/50 shadow-sm transition-all duration-300 text-sm font-medium flex items-center gap-2"
+          >
+            <span>lub-u</span>
+            <span className="text-pink-500">💕</span>
+          </button>
           <WalletConnect />
         </div>
         <HeartCounter counter={totalCount} onHold={handleClick} size={250} />
@@ -211,6 +219,11 @@ export default function Home() {
           <Footer />
         </div>
       </div>
+      <LubModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        totalClicks={totalCount}
+      />
     </main>
   );
 }

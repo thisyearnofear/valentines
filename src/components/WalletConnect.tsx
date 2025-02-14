@@ -2,7 +2,6 @@
 
 import { ConnectKitButton } from "connectkit";
 import { useAccount, useChainId } from "wagmi";
-import { optimism } from "wagmi/chains";
 import { useEffect, useState } from "react";
 
 export default function WalletConnect() {
@@ -29,7 +28,7 @@ export default function WalletConnect() {
   return (
     <ConnectKitButton.Custom>
       {({ show, truncatedAddress, ensName }) => {
-        const showWrongNetwork = isConnected && chainId !== optimism.id;
+        const showWrongNetwork = isConnected && chainId !== 11155420;
 
         return (
           <button
@@ -43,7 +42,7 @@ export default function WalletConnect() {
             {isConnected ? (
               <>
                 {showWrongNetwork
-                  ? "Switch to Optimism"
+                  ? "Switch to OP Sepolia"
                   : ensName ?? truncatedAddress}
               </>
             ) : (
