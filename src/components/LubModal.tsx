@@ -2,7 +2,7 @@
 
 import { useClicker } from "../hooks/useClicker";
 import { useLubActivity } from "../hooks/useLubActivity";
-import { useAccount, useChainId, usePublicClient } from "wagmi";
+import { useAccount, useChainId, usePublicClient, useSwitchChain } from "wagmi";
 import { useState, useEffect } from "react";
 import {
   IoClose,
@@ -37,27 +37,61 @@ const Terminal = ({ messages }: { messages: string[] }) => (
 // Chain warning component
 const ChainWarning = () => {
   const chainId = useChainId();
+  const { switchChain } = useSwitchChain();
   const needsSwitch = chainId !== 11155420; // OP Sepolia
 
   if (!needsSwitch) return null;
 
+  const handleSwitch = async () => {
+    try {
+      await switchChain({ chainId: 11155420 });
+    } catch (error) {
+      console.error("Failed to switch chain:", error);
+    }
+  };
+
   return (
     <div className="bg-yellow-100 dark:bg-yellow-900/50 border border-yellow-200 dark:border-yellow-700 rounded-lg p-4 text-sm text-yellow-800 dark:text-yellow-200">
-      <div className="flex items-center gap-2">
-        <IoWarning className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
+      <div className="flex items-center gap-2 mb-2">
+        <IoWarning className="w-5 h-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0" />
         <span>Please switch to OP Sepolia testnet to gift lub</span>
       </div>
-      <p className="mt-2 text-xs opacity-75">
-        You can get testnet ETH from the{" "}
-        <a
-          href="https://www.optimism.io/superchain/faucets"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:no-underline"
+
+      <div className="space-y-3">
+        <button
+          onClick={handleSwitch}
+          className="w-full px-3 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md transition-colors flex items-center justify-center gap-2"
         >
-          OP Sepolia faucet
-        </a>
-      </p>
+          Switch to OP Sepolia
+        </button>
+
+        <div className="text-xs space-y-2">
+          <p className="opacity-75">If the automatic switch doesnt work:</p>
+          <ol className="list-decimal list-inside space-y-1 opacity-75">
+            <li>Open Wallet app</li>
+            <li>Tap the network selector (usually shows Ethereum)</li>
+            <li>Tap Add or edit network</li>
+            <li>Add custom network with these details:</li>
+          </ol>
+          <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded p-2 font-mono text-xs">
+            <p>Network Name: OP Sepolia</p>
+            <p>RPC URL: https://sepolia.optimism.io</p>
+            <p>Chain ID: 11155420</p>
+            <p>Currency Symbol: ETH</p>
+          </div>
+          <p className="mt-2">
+            Need testnet ETH?{" "}
+            <a
+              href="https://www.alchemy.com/faucets/optimism-sepolia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:no-underline"
+            >
+              Get from OP Sepolia faucet →
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

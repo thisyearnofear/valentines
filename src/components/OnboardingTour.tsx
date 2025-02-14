@@ -18,13 +18,13 @@ const steps: Step[] = [
   },
   {
     target: "[data-tour='lub-button']",
-    content: "A social experiment in lubbing community ✨",
+    content: "social experiment ✨",
     position: "bottom",
   },
   {
     target: "[data-tour='built-by']",
     content:
-      "Forked open source MIT license code. Dev rewards voluntarily split with the originator, onchain. Powered by GitSplits on Optimism 🌱",
+      "Forked open source MIT license code. Any rewards voluntarily split with the originator, onchain via GitSplits on sOptimism 🌱",
     position: "top",
   },
 ];

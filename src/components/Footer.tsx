@@ -13,7 +13,7 @@ export default function Footer() {
       >
         papa
       </a>{" "}
-      •{" "}
+      &{" "}
       <a
         href="https://givemelove.netlify.app"
         target="_blank"
