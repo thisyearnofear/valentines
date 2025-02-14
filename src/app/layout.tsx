@@ -16,13 +16,16 @@ export const metadata: Metadata = {
     "fc:frame": JSON.stringify({
       version: "next",
       imageUrl: "https://lub-u.vercel.app/og-image.png",
-      buttons: [
-        {
-          label: "Share lub",
-          action: "post_redirect",
+      button: {
+        title: "Share lub",
+        action: {
+          type: "launch_frame",
+          name: "lub-u",
+          url: "https://lub-u.vercel.app",
+          splashImageUrl: "https://lub-u.vercel.app/favicon.ico",
+          splashBackgroundColor: "#fad1cf",
         },
-      ],
-      postUrl: "https://lub-u.vercel.app",
+      },
     }),
   },
 };
