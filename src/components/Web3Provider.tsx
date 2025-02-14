@@ -20,12 +20,11 @@ const config = createConfig(
       process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "",
 
     // Required App Info
-    appName: "Give Me Love",
+    appName: "lub-u",
 
     // Optional App Info
-    appDescription:
-      "A valentines-inspired web3 app where people can give each other love through hearts",
-    appUrl: "https://givemelove.vercel.app",
+    appDescription: "Share love with frens",
+    appUrl: "https://lub-u.vercel.app",
     appIcon: "/favicon.ico",
   })
 );

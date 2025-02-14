@@ -1,3 +1,4 @@
+import { GrRefresh } from "react-icons/gr";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocale from "dayjs/plugin/updateLocale";
@@ -20,56 +21,28 @@ dayjs.updateLocale("en", {
     yy: "%d years",
   },
 });
-import { GrRefresh } from "react-icons/gr";
 
 interface UpdateTextProps {
   lastUpdated: Date | null;
-  currentDateTime: Date;
   onRefresh: () => void;
+  currentDateTime: Date;
 }
 
 const UpdateText = ({
   lastUpdated,
-  currentDateTime,
   onRefresh,
+  currentDateTime,
 }: UpdateTextProps) => {
   if (!lastUpdated) return null;
 
-  const getTimeDifference = () => {
-    const diffInSeconds = Math.floor(
-      (currentDateTime.getTime() - lastUpdated.getTime()) / 1000
-    );
-
-    if (diffInSeconds < 60) return `${diffInSeconds} seconds ago`;
-    if (diffInSeconds < 3600)
-      return `${Math.floor(diffInSeconds / 60)} minutes ago`;
-    if (diffInSeconds < 86400)
-      return `${Math.floor(diffInSeconds / 3600)} hours ago`;
-    return `${Math.floor(diffInSeconds / 86400)} days ago`;
-  };
-
   return (
-    <div className="flex items-center space-x-2 text-sm">
-      <span>Last updated: {getTimeDifference()}</span>
+    <div className="flex flex-row items-center gap-2 text-sm">
+      <span>Last updated {dayjs(lastUpdated).from(currentDateTime)}</span>
       <button
         onClick={onRefresh}
-        className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-        aria-label="Refresh"
+        className="p-1 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
       >
-        <svg
-          className="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-          />
-        </svg>
+        <GrRefresh className="w-4 h-4" />
       </button>
     </div>
   );

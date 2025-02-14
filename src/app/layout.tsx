@@ -6,9 +6,8 @@ import { Web3Provider } from "../components/Web3Provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Give Me Love",
-  description:
-    "A valentines-inspired clicker web app where single people all over the world can give each other some love through a heart on their screen",
+  title: "lub-u",
+  description: "share love with frens",
 };
 
 export default function RootLayout({

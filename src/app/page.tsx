@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useWindowSize } from "@uidotdev/usehooks";
 import {
   doc,
@@ -27,7 +27,6 @@ interface Data {
 export default function Home() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [currentDatetime, setCurrentDatetime] = useState(new Date());
-  const [theme, setTheme] = useState("light");
   const [count, setCount] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [error, setError] = useState("");
@@ -46,7 +45,7 @@ export default function Home() {
   >([]);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
-  const getData = () => {
+  const getData = useCallback(() => {
     getDoc(counterRef)
       .then((res) => {
         const data = res.data() as Data;
@@ -59,27 +58,9 @@ export default function Home() {
       .catch((err) => {
         setError(err.message);
       });
-  };
+  }, [counterRef]);
 
   useEffect(() => {
-    // check theme
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-      if (savedTheme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    } else {
-      // Check system preference
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        setTheme("dark");
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-      }
-    }
-
     // check last saved count
     const savedCount = localStorage.getItem("count");
     if (savedCount) {
@@ -99,7 +80,7 @@ export default function Home() {
       .catch((err) => {
         setError(err.message);
       });
-  }, []);
+  }, [getData]);
 
   useEffect(() => {
     if (count === 0) return;
@@ -115,7 +96,7 @@ export default function Home() {
       setLastUpdated(new Date());
       localStorage.setItem("count", totalCount.toString());
     }
-  }, [submitCounterDebounce]);
+  }, [submitCounterDebounce, count, counterRef, totalCount]);
 
   const getRandomColor = () => {
     // Use more vibrant colors with higher saturation
@@ -205,22 +186,6 @@ export default function Home() {
   const handleLastUpdatedRefresh = () => {
     getData();
     setCurrentDatetime(new Date());
-  };
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-
-    // Update HTML class
-    const html = document.documentElement;
-    if (newTheme === "dark") {
-      html.classList.add("dark");
-    } else {
-      html.classList.remove("dark");
-    }
-
-    // Store preference
-    localStorage.setItem("theme", newTheme);
   };
 
   return (
