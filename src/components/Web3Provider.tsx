@@ -8,7 +8,7 @@ import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 const config = createConfig(
   getDefaultConfig({
     // Your dApps chains
-    chains: [mainnet, optimism],
+    chains: [mainnet, optimism] as const,
     transports: {
       // RPC URL for each chain
       [mainnet.id]: http(),
