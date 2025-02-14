@@ -41,11 +41,13 @@ const config = createConfig(
     // Your dApps chains
     chains: [opSepolia, optimism, mainnet] as const,
     transports: {
-      // RPC URL for each chain
+      // RPC URL for each chain with fallbacks
       [mainnet.id]: http(
-        `https://frequent-withered-surf.quiknode.pro/${process.env.NEXT_PUBLIC_QUICKNODE_API_KEY}`
+        `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`
       ),
-      [optimism.id]: http(`https://mainnet.optimism.io`),
+      [optimism.id]: http(
+        `https://opt-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`
+      ),
       [opSepolia.id]: http(
         `https://opt-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`
       ),

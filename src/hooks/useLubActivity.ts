@@ -193,56 +193,79 @@ export function useLubActivity() {
         const currentBlock = await publicClient.getBlockNumber();
         console.log("Current block:", currentBlock.toString());
 
-        // Start from 2000 blocks ago (or 0 if less than 2000 blocks have passed)
+        // Start from 20000 blocks ago (or 0 if less than 20000 blocks have passed)
         const startBlock =
-          currentBlock - BigInt(2000) > 0
-            ? currentBlock - BigInt(2000)
+          currentBlock - BigInt(20000) > 0
+            ? currentBlock - BigInt(20000)
             : BigInt(0);
 
-        console.log("Fetching logs:", {
-          address: CLICKER_ADDRESS[11155420],
-          fromBlock: startBlock.toString(),
-          toBlock: currentBlock.toString(),
-          chainId,
-        });
+        // Split into chunks of 10000 blocks to handle RPC limitations
+        const chunkSize = BigInt(9500); // Slightly less than 10000 to be safe
+        let allLogs = [];
 
-        // Get events
-        const logs = await publicClient.getLogs({
-          address: CLICKER_ADDRESS[11155420],
-          fromBlock: startBlock,
-          toBlock: currentBlock,
-          event: {
-            type: "event",
-            name: "ClicksAttributed",
-            inputs: [
-              {
-                indexed: true,
-                name: "buyer",
-                type: "address",
+        for (
+          let fromBlock = startBlock;
+          fromBlock < currentBlock;
+          fromBlock += chunkSize
+        ) {
+          const toBlock =
+            fromBlock + chunkSize > currentBlock
+              ? currentBlock
+              : fromBlock + chunkSize;
+
+          console.log("Fetching logs:", {
+            address: CLICKER_ADDRESS[11155420],
+            fromBlock: fromBlock.toString(),
+            toBlock: toBlock.toString(),
+            chainId,
+          });
+
+          try {
+            const logs = await publicClient.getLogs({
+              address: CLICKER_ADDRESS[11155420],
+              fromBlock,
+              toBlock,
+              event: {
+                type: "event",
+                name: "ClicksAttributed",
+                inputs: [
+                  {
+                    indexed: true,
+                    name: "buyer",
+                    type: "address",
+                  },
+                  {
+                    indexed: true,
+                    name: "recipient",
+                    type: "address",
+                  },
+                  {
+                    indexed: false,
+                    name: "amount",
+                    type: "uint256",
+                  },
+                ],
               },
-              {
-                indexed: true,
-                name: "recipient",
-                type: "address",
-              },
-              {
-                indexed: false,
-                name: "amount",
-                type: "uint256",
-              },
-            ],
-          },
-        });
+            });
+            allLogs.push(...logs);
+          } catch (error) {
+            console.error("Error fetching logs for range:", {
+              fromBlock: fromBlock.toString(),
+              toBlock: toBlock.toString(),
+              error,
+            });
+          }
+        }
 
         console.log("Found logs:", {
-          count: logs.length,
-          logs,
+          count: allLogs.length,
+          logs: allLogs,
           chainId,
         });
 
         // Process past events
         const pastEvents = await Promise.all(
-          logs.map(async (log) => {
+          allLogs.map(async (log) => {
             try {
               // Get block timestamp for accurate event time
               const block = await publicClient.getBlock({
