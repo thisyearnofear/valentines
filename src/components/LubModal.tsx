@@ -141,45 +141,64 @@ const SuccessMessage = ({
 type Tab = "send" | "stats" | "faq";
 
 // FAQ Component
-const FAQ = () => (
-  <div className="space-y-4 text-sm">
-    <div>
-      <h4 className="font-medium text-center mb-2">What is lub-u? 💝</h4>
-      <p className="text-gray-600 dark:text-gray-400 text-center">
-        A spcial experiment combining organic clicks with on-chain ownership.
-        Every lub counts towards the total of 69,420!
-      </p>
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "What is lub-u? 💝",
+      answer:
+        "A spcial experiment combining organic clicks with on-chain ownership. Every lub counts towards the total of 69,420!",
+    },
+    {
+      question: "How does ownership work? 🤔",
+      answer:
+        "When we reach 69,420 total lub: • Offchain clicks represent the total allocated to treasury (upcoming agent + devs + dao) • Onchain lubs allocated according to recipients (self lub encouraged) •",
+    },
+    {
+      question: "What happens at 69,420? 🎯",
+      answer:
+        "For this test run the contract will be manually finalized (no more lub gifting) • This locks in everyones percentage and is subject to some final tweaks before the mainnet launch",
+    },
+    {
+      question: "How to participate? ❤️",
+      answer:
+        "1. Click the heart (free, offchain, open to anyone) 2. Gift lub (0.0001 ETH each) 3. Spread the lub 4. Be chill, things will break/change, its a fun experiment",
+    },
+  ];
+
+  return (
+    <div className="space-y-2">
+      {faqs.map((faq, index) => (
+        <div
+          key={index}
+          className="border-b border-gray-200 dark:border-gray-700 last:border-0"
+        >
+          <button
+            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            className="w-full px-4 py-3 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-lg transition-colors"
+          >
+            <span className="font-medium">{faq.question}</span>
+            <span
+              className="text-gray-500 transform transition-transform duration-200"
+              style={{
+                transform:
+                  openIndex === index ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+            >
+              ▼
+            </span>
+          </button>
+          {openIndex === index && (
+            <div className="px-4 pb-3 text-gray-600 dark:text-gray-400 text-sm">
+              {faq.answer}
+            </div>
+          )}
+        </div>
+      ))}
     </div>
-    <div>
-      <h4 className="font-medium text-center mb-2">
-        How does ownership work? 🤔
-      </h4>
-      <p className="text-gray-600 dark:text-gray-400 text-center">
-        When we reach 69,420 total lub: • Offchain clicks represent the total
-        allocated to treasury (upcoming agent + devs + dao) • Onchain lubs
-        allocated according to recipients (self lub encouraged) •
-      </p>
-    </div>
-    <div>
-      <h4 className="font-medium text-center mb-2">
-        What happens at 69,420? 🎯
-      </h4>
-      <p className="text-gray-600 dark:text-gray-400 text-center">
-        For this test run the contract will be manually finalized (no more lub
-        gifting) • This locks in everyones percentage and is subject to some
-        final tweaks before the mainnet launch
-      </p>
-    </div>
-    <div>
-      <h4 className="font-medium text-center mb-2">How to participate? ❤️</h4>
-      <p className="text-gray-600 dark:text-gray-400 text-center">
-        1. Click the heart (free, offchain, open to anyone) 2. Gift lub (0.0001
-        ETH each) 3. Spread the lub 4. Be chill, things will break/change, its a
-        fun experiment
-      </p>
-    </div>
-  </div>
-);
+  );
+};
 
 // Stats Component
 const Stats = ({
