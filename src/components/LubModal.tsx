@@ -148,22 +148,22 @@ const FAQ = () => {
     {
       question: "What is lub-u? 💝",
       answer:
-        "A spcial experiment combining organic clicks with on-chain ownership. Every lub counts towards the total of 69,420!",
+        "A social experiment combining organic clicks with on-chain ownership. First target: 69,420",
     },
     {
       question: "How does ownership work? 🤔",
       answer:
-        "When we reach 69,420 total lub: • Offchain clicks represent the total allocated to treasury (upcoming agent + devs + dao) • Onchain lubs allocated according to recipients (self lub encouraged) •",
+        "When 69,420 total lub are gifted: • Offchain clicks represent the total allocated to treasury (agent + devs + dao) • Onchain lubs allocated according to recipients (self lub encouraged) •",
     },
     {
       question: "What happens at 69,420? 🎯",
       answer:
-        "For this test run the contract will be manually finalized (no more lub gifting) • This locks in everyones percentage and is subject to some final tweaks before the mainnet launch",
+        "This first contract is aiming to be manually finalized at 69,420 • This is an allocation percentage guide subject to final tweaks",
     },
     {
       question: "How to participate? ❤️",
       answer:
-        "1. Click the heart (free, offchain, open to anyone) 2. Gift lub (0.0001 ETH each) 3. Spread the lub 4. Be chill, things will break/change, its a fun experiment",
+        "1. Click the heart (free, offchain, open to anyone) 2. Gift lub (0.0001 ETH each) 3. Spread the lub 4. Be chill, things may break/change as we experiment",
     },
   ];
 
