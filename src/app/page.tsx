@@ -19,6 +19,7 @@ import Canvas from "../components/Canvas";
 import WalletConnect from "../components/WalletConnect";
 import Alert from "../components/Alert";
 import LubModal from "../components/LubModal";
+import OnboardingTour from "../components/OnboardingTour";
 
 interface Data {
   count: number;
@@ -201,6 +202,7 @@ export default function Home() {
       <div className="flex flex-col justify-evenly items-center min-h-screen m-auto px-5 select-none z-10 text-black dark:text-white">
         <div className="flex flex-row justify-between w-full max-w-3xl z-10">
           <button
+            data-tour="lub-button"
             onClick={() => setIsModalOpen(true)}
             className="px-4 py-2 rounded-xl bg-white/90 dark:bg-gray-900/90 hover:bg-pink-100 dark:hover:bg-pink-900/50 shadow-sm transition-all duration-300 text-sm font-medium flex items-center gap-2"
           >
@@ -209,7 +211,9 @@ export default function Home() {
           </button>
           <WalletConnect />
         </div>
-        <HeartCounter counter={totalCount} onHold={handleClick} size={250} />
+        <div data-tour="heart">
+          <HeartCounter counter={totalCount} onHold={handleClick} size={250} />
+        </div>
         <div className="flex flex-col justify-center items-center sm:flex-row sm:justify-between w-full max-w-3xl z-10">
           <UpdateText
             lastUpdated={lastUpdated}
@@ -224,6 +228,7 @@ export default function Home() {
         onClose={() => setIsModalOpen(false)}
         totalClicks={totalCount}
       />
+      <OnboardingTour />
     </main>
   );
 }

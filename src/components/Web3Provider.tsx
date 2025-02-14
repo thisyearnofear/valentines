@@ -42,8 +42,8 @@ const config = createConfig(
     chains: [opSepolia, optimism, mainnet] as const,
     transports: {
       // RPC URL for each chain
-      [mainnet.id]: http(),
-      [optimism.id]: http(),
+      [mainnet.id]: http("https://eth.llamarpc.com"),
+      [optimism.id]: http("https://mainnet.optimism.io"),
       [opSepolia.id]: http(
         `https://opt-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`
       ),
