@@ -201,7 +201,7 @@ export function useLubActivity() {
 
         // Split into chunks of 10000 blocks to handle RPC limitations
         const chunkSize = BigInt(9500); // Slightly less than 10000 to be safe
-        let allLogs = [];
+        const allLogs = [];
 
         for (
           let fromBlock = startBlock;
