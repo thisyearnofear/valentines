@@ -1,26 +1,27 @@
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="text-sm text-gray-600 dark:text-gray-400">
-      Made with ❤️ by{" "}
+    <div
+      data-tour="built-by"
+      className="text-xs text-gray-500 dark:text-gray-400"
+    >
+      Built by{" "}
       <a
-        href="https://warpcast.com/papa"
+        href="https://warpcast.com/udingethe"
         target="_blank"
         rel="noopener noreferrer"
-        className="underline hover:text-gray-900 dark:hover:text-gray-200"
+        className="text-pink-500 hover:text-pink-600"
       >
-        papa
+        @udingethe
       </a>{" "}
-      &{" "}
+      •{" "}
       <a
-        href="https://givemelove.netlify.app"
+        href="https://gitsplits.vercel.app/"
         target="_blank"
         rel="noopener noreferrer"
-        className="underline hover:text-gray-900 dark:hover:text-gray-200"
+        className="text-pink-500 hover:text-pink-600"
       >
-        yilverdeja
+        GitSplits
       </a>
-    </footer>
+    </div>
   );
-};
-
-export default Footer;
+}

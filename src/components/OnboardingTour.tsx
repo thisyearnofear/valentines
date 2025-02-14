@@ -21,6 +21,12 @@ const steps: Step[] = [
     content: "A social experiment in lubbing community ✨",
     position: "bottom",
   },
+  {
+    target: "[data-tour='built-by']",
+    content:
+      "Forked open source MIT license code. Dev rewards voluntarily split with the originator, onchain. Powered by GitSplits on Optimism 🌱",
+    position: "top",
+  },
 ];
 
 export default function OnboardingTour() {
