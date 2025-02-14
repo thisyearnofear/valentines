@@ -122,7 +122,7 @@ const FAQ = () => (
       <p className="text-gray-600 dark:text-gray-400 text-center">
         When we reach 69,420 total lub: • Offchain clicks represent the total
         allocated to treasury (upcoming agent + devs + dao) • Onchain lubs
-        allocated to whoever they've been gifted to (self lub encouraged) •
+        allocated according to recipients (self lub encouraged) •
       </p>
     </div>
     <div>

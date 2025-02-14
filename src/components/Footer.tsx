@@ -9,6 +9,15 @@ const Footer = () => {
         className="underline hover:text-gray-900 dark:hover:text-gray-200"
       >
         papa
+      </a>{" "}
+      &{" "}
+      <a
+        href="https://github.com/yilverdeja/givemelove-react"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline hover:text-gray-900 dark:hover:text-gray-200"
+      >
+        yilverdeja
       </a>
     </footer>
   );
