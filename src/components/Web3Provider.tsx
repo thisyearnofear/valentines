@@ -4,6 +4,7 @@ import { WagmiProvider, createConfig, http } from "wagmi";
 import { mainnet, optimism } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
+import { farcasterFrame } from "@farcaster/frame-wagmi-connector";
 
 // Add OP Sepolia chain configuration
 const opSepolia = {
@@ -36,7 +37,7 @@ const opSepolia = {
 const queryClient = new QueryClient();
 
 // Configure chains - OP Sepolia first for better UX
-const config = createConfig(
+export const config = createConfig(
   getDefaultConfig({
     // Your dApps chains
     chains: [opSepolia, optimism, mainnet] as const,
@@ -64,6 +65,9 @@ const config = createConfig(
     appDescription: "Share love with frens",
     appUrl: "https://lub-u.vercel.app",
     appIcon: "/favicon.ico",
+
+    // Add Farcaster Frame connector
+    connectors: [farcasterFrame()],
   })
 );
 
