@@ -6,21 +6,21 @@ export default function Footer() {
     >
       Built by{" "}
       <a
-        href="https://warpcast.com/udingethe"
+        href="https://warpcast.com/papa"
         target="_blank"
         rel="noopener noreferrer"
         className="text-pink-500 hover:text-pink-600"
       >
-        @udingethe
+        papa
       </a>{" "}
       •{" "}
       <a
-        href="https://gitsplits.vercel.app/"
+        href="https://givemelove.netlify.app"
         target="_blank"
         rel="noopener noreferrer"
         className="text-pink-500 hover:text-pink-600"
       >
-        GitSplits
+        yilverdeja
       </a>
     </div>
   );

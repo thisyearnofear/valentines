@@ -16,6 +16,7 @@ import { useIdentityResolution } from "../hooks/useIdentityResolution";
 import Image from "next/image";
 import { useContractRead } from "wagmi";
 import { CLICKER_ABI, CLICKER_ADDRESS } from "../config/contracts";
+import WalletConnect from "./WalletConnect";
 
 // Updated terminal-style component
 const Terminal = ({ messages }: { messages: string[] }) => (
@@ -553,6 +554,18 @@ export default function LubModal({
           )}
           {activeTab === "faq" && <FAQ />}
         </div>
+
+        {/* Wallet Connection Prompt */}
+        {!isConnected && (
+          <div className="text-center py-4 border-t border-gray-200 dark:border-gray-800">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+              Connect your wallet to see who is spreading the lub 💕
+            </p>
+            <div className="flex justify-center">
+              <WalletConnect />
+            </div>
+          </div>
+        )}
 
         {/* Activity Feed */}
         <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
