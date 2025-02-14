@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  transition: background-color 1000ms ease-in-out;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: black;
+  color: white;
+}
+
+/* Ensure dark mode works with Tailwind */
+:root {
+  --background-color: #fad1cf;
+}
+
+.dark {
+  --background-color: black;
+}
