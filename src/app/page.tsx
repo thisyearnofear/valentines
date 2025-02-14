@@ -189,7 +189,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#fad1cf] dark:bg-black transition-colors duration-1000">
+    <main className="min-h-screen bg-[#fad1cf] dark:bg-purple-800 transition-colors duration-1000">
       <Alert message={error} onClose={() => setError("")} />
       <Canvas
         draw={draw}
@@ -198,7 +198,7 @@ export default function Home() {
       />
       <div className="flex flex-col justify-evenly items-center min-h-screen m-auto px-5 select-none z-10 text-black dark:text-white">
         <div className="flex flex-row justify-between w-full max-w-3xl z-10">
-          <div className="text-sm">Give Me Love</div>
+          <div className="text-sm">lub-u</div>
           <WalletConnect />
         </div>
         <HeartCounter counter={totalCount} onHold={handleClick} size={250} />
