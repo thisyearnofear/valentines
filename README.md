@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# lub-u
 
-## Getting Started
+Share love with frens on Linea 💕
 
-First, run the development server:
+## Overview
+
+lub-u is a social experiment on Linea mainnet that combines organic clicks with on-chain ownership. The project consists of three main components:
+
+1. **Web App**: A Next.js application for interacting with the lub-u contract
+2. **Farcaster Frame**: An embedded frame for sharing lub directly in Farcaster
+3. **AI Agent**: A Gemini-powered agent that manages the treasury
+
+## Architecture
+
+### Smart Contracts (Linea Mainnet)
+
+- **ClickLub Contract**: [`0x51510fD1FB5b6528D514F6bb484835A45AD71698`](https://lineascan.build/address/0x51510fD1FB5b6528D514F6bb484835A45AD71698)
+- **Treasury Safe**: [`0x7e0A89A36Ba135A79aF121f443e20860845A731b`](https://app.safe.global/home?safe=lin:0x7e0A89A36Ba135A79aF121f443e20860845A731b)
+
+### Web App
+
+The web application is built with:
+
+- Next.js 14 (App Router)
+- Wagmi v2 for Web3 interactions
+- ConnectKit for wallet connections
+- TailwindCSS for styling
+
+### Farcaster Frame
+
+The Farcaster Frame integration allows users to:
+
+- View current lub statistics
+- Gift lub directly from Warpcast
+- Connect with Frame-compatible wallets
+
+### AI Agent
+
+The treasury is managed by an AI agent powered by:
+
+- Gemini Pro for decision making
+- LangChain for tool orchestration
+- Safe Protocol Kit for treasury management
+
+## Development
+
+First, create a `.env` file with the required environment variables:
+
+```bash
+# Required: Web3 Infrastructure
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=
+NEXT_PUBLIC_ALCHEMY_API_KEY=
+
+# Required: AI Agent
+GOOGLE_API_KEY=
+AGENT_ADDRESS=
+
+# Optional: LangSmith Tracing
+LANGCHAIN_API_KEY=
+LANGCHAIN_TRACING_V2=
+LANGCHAIN_PROJECT=
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Testing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Test the AI agent's functionality:
 
-## Learn More
+```bash
+npm run test:agent
+```
 
-To learn more about Next.js, take a look at the following resources:
+Test Safe treasury control:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run test:safe
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Security Considerations
 
-## Deploy on Vercel
+- Never commit private keys or sensitive API keys to the repository
+- Use environment variables for all sensitive configuration
+- The AI agent's private key should be stored securely and rotated regularly
+- Monitor the Safe's activity through the [Safe UI](https://app.safe.global)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app is deployed on Vercel with automatic deployments from the main branch. The Farcaster Frame metadata is served from the `.well-known` directory.
+
+## Contributing
+
+Contributions are welcome! Please check the issues page for current tasks or create a new issue to discuss proposed changes.
+
+## License
+
+MIT

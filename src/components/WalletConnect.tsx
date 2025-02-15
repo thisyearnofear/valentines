@@ -17,6 +17,7 @@ export default function WalletConnect() {
   if (!mounted) {
     return (
       <button
+        type="button"
         className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 transition-colors text-sm"
         aria-label="Loading wallet connection"
       >
@@ -28,11 +29,12 @@ export default function WalletConnect() {
   return (
     <ConnectKitButton.Custom>
       {({ show, truncatedAddress, ensName }) => {
-        const showWrongNetwork = isConnected && chainId !== 11155420;
+        const showWrongNetwork = isConnected && chainId !== 59144; // Linea Mainnet
 
         return (
           <button
             onClick={show}
+            type="button"
             className={`p-2 rounded-lg transition-colors text-sm ${
               showWrongNetwork
                 ? "bg-red-200 dark:bg-red-900 hover:bg-red-300 dark:hover:bg-red-800"
@@ -42,7 +44,7 @@ export default function WalletConnect() {
             {isConnected ? (
               <>
                 {showWrongNetwork
-                  ? "Switch to OP Sepolia"
+                  ? "Switch to Linea"
                   : ensName ?? truncatedAddress}
               </>
             ) : (

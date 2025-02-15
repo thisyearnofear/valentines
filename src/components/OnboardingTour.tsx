@@ -24,7 +24,7 @@ const steps: Step[] = [
   {
     target: "[data-tour='built-by']",
     content:
-      "Forked open source MIT license code. Any rewards voluntarily split with the originator, onchain via GitSplits on sOptimism 🌱",
+      "Forked open source MIT license code. Any rewards voluntarily split with the originator, onchain via GitSplits 🌱",
     position: "top",
   },
 ];

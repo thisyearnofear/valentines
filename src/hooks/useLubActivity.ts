@@ -99,7 +99,7 @@ export function useLubActivity() {
 
   // Watch for ClicksAttributed events
   useWatchContractEvent({
-    address: CLICKER_ADDRESS[11155420] as `0x${string}`,
+    address: CLICKER_ADDRESS[59144] as `0x${string}`,
     abi: CLICKER_ABI,
     eventName: "ClicksAttributed",
     onLogs: async (logs) => {
@@ -214,7 +214,7 @@ export function useLubActivity() {
               : fromBlock + chunkSize;
 
           console.log("Fetching logs:", {
-            address: CLICKER_ADDRESS[11155420],
+            address: CLICKER_ADDRESS[59144],
             fromBlock: fromBlock.toString(),
             toBlock: toBlock.toString(),
             chainId,
@@ -222,7 +222,7 @@ export function useLubActivity() {
 
           try {
             const logs = await publicClient.getLogs({
-              address: CLICKER_ADDRESS[11155420],
+              address: CLICKER_ADDRESS[59144],
               fromBlock,
               toBlock,
               event: {

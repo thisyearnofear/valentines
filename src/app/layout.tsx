@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "lub-u",
-  description: "share love with frens",
+  description: "share love with frens on linea",
   icons: {
     icon: "/favicon.ico",
   },

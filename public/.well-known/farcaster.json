@@ -2,6 +2,7 @@
     "frame": {
         "name": "lub-u",
         "version": "0.0.1",
+        "description": "Share love with frens on Linea",
         "iconUrl": "https://lub-u.vercel.app/favicon.ico",
         "homeUrl": "https://lub-u.vercel.app",
         "splashImageUrl": "https://lub-u.vercel.app/favicon.ico",

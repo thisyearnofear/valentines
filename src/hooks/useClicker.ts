@@ -13,6 +13,9 @@ const MAX_CLICKS = BigInt(69420);
 const MAX_PER_PURCHASE = BigInt(420);
 const CLICK_PRICE = parseEther("0.0001");
 
+// Chain constants
+const LINEA_CHAIN_ID = 59144;
+
 export function useClicker() {
   const { address } = useAccount();
   const chainId = useChainId();
@@ -30,7 +33,7 @@ export function useClicker() {
     }
   }, [chainId, contractAddress, address]);
 
-  const isReady = Boolean(contractAddress && chainId === 11155420);
+  const isReady = Boolean(contractAddress && chainId === LINEA_CHAIN_ID);
 
   const { data: remainingClicks } = useReadContract({
     address: contractAddress as `0x${string}`,
@@ -69,7 +72,9 @@ export function useClicker() {
 
   const handleBuyClicks = async (amount: number, recipient?: string) => {
     if (!isReady) {
-      throw new Error("Contract not ready or wrong network");
+      throw new Error(
+        `Please switch to Linea mainnet (Chain ID: ${LINEA_CHAIN_ID})`
+      );
     }
 
     if (!contractAddress || !amount) {

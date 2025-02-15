@@ -11,12 +11,16 @@ import {
   IoStatsChart,
   IoHelpCircle,
 } from "react-icons/io5";
-import { FaGift } from "react-icons/fa";
+import { FaGift, FaRobot } from "react-icons/fa";
 import { useIdentityResolution } from "../hooks/useIdentityResolution";
 import Image from "next/image";
 import { useContractRead } from "wagmi";
 import { CLICKER_ABI, CLICKER_ADDRESS } from "../config/contracts";
 import WalletConnect from "./WalletConnect";
+import dynamic from "next/dynamic";
+
+// Dynamically import AgentChat to avoid SSR issues
+const AgentChat = dynamic(() => import("./AgentChat"), { ssr: false });
 
 // Updated terminal-style component
 const Terminal = ({ messages }: { messages: string[] }) => (
@@ -38,13 +42,13 @@ const Terminal = ({ messages }: { messages: string[] }) => (
 const ChainWarning = () => {
   const chainId = useChainId();
   const { switchChain } = useSwitchChain();
-  const needsSwitch = chainId !== 11155420; // OP Sepolia
+  const needsSwitch = chainId !== 59144; // Linea Mainnet
 
   if (!needsSwitch) return null;
 
   const handleSwitch = async () => {
     try {
-      await switchChain({ chainId: 11155420 });
+      await switchChain({ chainId: 59144 });
     } catch (error) {
       console.error("Failed to switch chain:", error);
     }
@@ -54,7 +58,7 @@ const ChainWarning = () => {
     <div className="bg-yellow-100 dark:bg-yellow-900/50 border border-yellow-200 dark:border-yellow-700 rounded-lg p-4 text-sm text-yellow-800 dark:text-yellow-200">
       <div className="flex items-center gap-2 mb-2">
         <IoWarning className="w-5 h-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0" />
-        <span>Please switch to OP Sepolia testnet to gift lub</span>
+        <span>Please switch to Linea mainnet to gift lub</span>
       </div>
 
       <div className="space-y-3">
@@ -62,7 +66,7 @@ const ChainWarning = () => {
           onClick={handleSwitch}
           className="w-full px-3 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md transition-colors flex items-center justify-center gap-2"
         >
-          Switch to OP Sepolia
+          Switch to Linea
         </button>
 
         <div className="text-xs space-y-2">
@@ -74,20 +78,20 @@ const ChainWarning = () => {
             <li>Add custom network with these details:</li>
           </ol>
           <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded p-2 font-mono text-xs">
-            <p>Network Name: OP Sepolia</p>
-            <p>RPC URL: https://sepolia.optimism.io</p>
-            <p>Chain ID: 11155420</p>
+            <p>Network Name: Linea</p>
+            <p>RPC URL: https://linea-mainnet.infura.io</p>
+            <p>Chain ID: 59144</p>
             <p>Currency Symbol: ETH</p>
           </div>
           <p className="mt-2">
-            Need testnet ETH?{" "}
+            Need ETH on Linea?{" "}
             <a
-              href="https://www.alchemy.com/faucets/optimism-sepolia"
+              href="https://bridge.linea.build"
               target="_blank"
               rel="noopener noreferrer"
               className="underline hover:no-underline"
             >
-              Get from OP Sepolia faucet →
+              Bridge ETH to Linea →
             </a>
           </p>
         </div>
@@ -123,10 +127,10 @@ const SuccessMessage = ({
       </div>
       <h2 className="text-2xl font-bold">Lub sent! 💕</h2>
       <p className="text-gray-600 dark:text-gray-400">
-        Your love is now forever on the blockchain
+        Your love is now forever on Linea
       </p>
       <a
-        href={`https://sepolia-optimistic.etherscan.io/tx/${hash}`}
+        href={`https://lineascan.build/tx/${hash}`}
         target="_blank"
         rel="noopener noreferrer"
         className="text-sm text-pink-500 hover:text-pink-600 dark:hover:text-pink-400"
@@ -138,7 +142,7 @@ const SuccessMessage = ({
 );
 
 // Add tab type
-type Tab = "send" | "stats" | "faq";
+type Tab = "send" | "stats" | "faq" | "agent";
 
 // FAQ Component
 const FAQ = () => {
@@ -148,22 +152,22 @@ const FAQ = () => {
     {
       question: "What is lub-u? 💝",
       answer:
-        "A social experiment combining organic clicks with on-chain ownership. First target: 69,420",
+        "A social experiment on Linea combining organic clicks with on-chain ownership. First target: 69,420",
     },
     {
       question: "How does ownership work? 🤔",
       answer:
-        "When 69,420 total lub are gifted: • Offchain clicks represent the total allocated to treasury (agent + devs + dao) • Onchain lubs allocated according to recipients (self lub encouraged) •",
+        "When 69,420 total lub are gifted: • Offchain clicks represent the total allocated to treasury (agent + devs + dao) • Onchain lubs allocated according to recipients (self lub encouraged) • All ownership tracked on Linea mainnet",
     },
     {
       question: "What happens at 69,420? 🎯",
       answer:
-        "This first contract is aiming to be manually finalized at 69,420 • This is an allocation percentage guide subject to final tweaks",
+        "This first contract is aiming to be manually finalized at 69,420 • This is an allocation percentage guide subject to final tweaks • All ownership will be finalized on Linea mainnet",
     },
     {
       question: "How to participate? ❤️",
       answer:
-        "1. Click the heart (free, offchain, open to anyone) 2. Gift lub (0.0001 ETH each) 3. Spread the lub 4. Be chill, things may break/change as we experiment",
+        "1. Click the heart (free, offchain, open to anyone) 2. Gift lub (0.0001 ETH each) on Linea 3. Spread the lub 4. Be chill, things may break/change as we experiment",
     },
   ];
 
@@ -215,7 +219,7 @@ const Stats = ({
   userAddress?: string;
 }) => {
   const { data: userShare } = useContractRead({
-    address: CLICKER_ADDRESS[11155420] as `0x${string}`,
+    address: CLICKER_ADDRESS[59144] as `0x${string}`,
     abi: CLICKER_ABI,
     functionName: "getCurrentOwnershipShare",
     args: userAddress ? [userAddress as `0x${string}`] : undefined,
@@ -521,7 +525,7 @@ export default function LubModal({
   if (!isOpen) return null;
 
   const distribution = getDistribution(totalClicks);
-  const isCorrectChain = chainId === 11155420;
+  const isCorrectChain = chainId === 59144;
 
   const handleSend = async (
     amount: number,
@@ -577,6 +581,17 @@ export default function LubModal({
             <span className="text-sm">Stats</span>
           </button>
           <button
+            onClick={() => setActiveTab("agent")}
+            className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
+              activeTab === "agent"
+                ? "bg-pink-100 dark:bg-pink-900/50 text-pink-500"
+                : "hover:bg-gray-100 dark:hover:bg-gray-800"
+            }`}
+          >
+            <FaRobot size={16} />
+            <span className="text-sm">Agent</span>
+          </button>
+          <button
             onClick={() => setActiveTab("faq")}
             className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
               activeTab === "faq"
@@ -605,6 +620,7 @@ export default function LubModal({
           {activeTab === "stats" && (
             <Stats distribution={distribution} userAddress={address} />
           )}
+          {activeTab === "agent" && <AgentChat />}
           {activeTab === "faq" && <FAQ />}
         </div>
 
@@ -620,10 +636,12 @@ export default function LubModal({
           </div>
         )}
 
-        {/* Activity Feed */}
-        <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
-          <Terminal messages={events} />
-        </div>
+        {/* Activity Feed - Only show for non-agent tabs */}
+        {activeTab !== "agent" && (
+          <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
+            <Terminal messages={events} />
+          </div>
+        )}
       </div>
     </div>
   );

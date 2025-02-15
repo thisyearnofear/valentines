@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.19;
 
+/**
+ * @title ClickLub
+ * @dev Deployed on Linea Mainnet
+ * Treasury: 0x7e0A89A36Ba135A79aF121f443e20860845A731b
+ */
 contract ClickLub {
     address public immutable treasury;
     uint256 public constant MAX_CLICKS = 69420;

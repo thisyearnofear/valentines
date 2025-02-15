@@ -1,56 +1,26 @@
 "use client";
 
 import { WagmiProvider, createConfig, http } from "wagmi";
-import { mainnet, optimism } from "wagmi/chains";
+import { mainnet, linea } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 import { farcasterFrame } from "@farcaster/frame-wagmi-connector";
 
-// Add OP Sepolia chain configuration
-const opSepolia = {
-  id: 11155420,
-  name: "OP Sepolia",
-  network: "op-sepolia",
-  nativeCurrency: { name: "Sepolia Ether", symbol: "ETH", decimals: 18 },
-  rpcUrls: {
-    default: {
-      http: [
-        `https://opt-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`,
-      ],
-    },
-    public: {
-      http: [
-        `https://opt-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`,
-      ],
-    },
-  },
-  blockExplorers: {
-    default: {
-      name: "Explorer",
-      url: "https://sepolia-optimistic.etherscan.io",
-    },
-  },
-  testnet: true,
-} as const;
-
 // Create a client-side only QueryClient
 const queryClient = new QueryClient();
 
-// Configure chains - OP Sepolia first for better UX
+// Configure chains - Linea first for better UX
 export const config = createConfig(
   getDefaultConfig({
     // Your dApps chains
-    chains: [opSepolia, optimism, mainnet] as const,
+    chains: [linea, mainnet] as const,
     transports: {
       // RPC URL for each chain with fallbacks
       [mainnet.id]: http(
         `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`
       ),
-      [optimism.id]: http(
-        `https://opt-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`
-      ),
-      [opSepolia.id]: http(
-        `https://opt-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`
+      [linea.id]: http(
+        `https://linea-mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`
       ),
     },
 
@@ -82,7 +52,7 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
             "--ck-accent-text-color": "#000000",
           }}
           options={{
-            initialChainId: opSepolia.id,
+            initialChainId: linea.id,
             // Show the network switcher and enforce supported chains
             hideNoWalletCTA: false,
             enforceSupportedChains: true,
