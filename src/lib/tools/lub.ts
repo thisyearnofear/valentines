@@ -89,7 +89,6 @@ export const getLubStats = async () => {
   const onchainLubs = Number(totalAttributed);
   const totalProgress = offchainClicks + onchainLubs;
   const communityPercentage = (totalProgress / maxClicksNum) * 100;
-  const remainingPercentage = 100 - communityPercentage;
 
   return `Lub Progress Update:
 - Off-chain clicks (as of ${LAST_MANUAL_UPDATE.timestamp.toLocaleString()}): ${offchainClicks.toLocaleString()}
@@ -97,6 +96,7 @@ export const getLubStats = async () => {
 - Total progress: ${totalProgress.toLocaleString()} / ${maxClicksNum.toLocaleString()} (${communityPercentage.toFixed(
     2
   )}%)
+- Remaining lubs: ${Number(remaining).toLocaleString()}
 - Price per lub: 0.0001 ETH
 ${
   resolvedHolders.length > 0
