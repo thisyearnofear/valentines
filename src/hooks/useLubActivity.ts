@@ -36,6 +36,14 @@ const getRandomMessage = (
       `${buyerName} knows self-lub is important (${amount} lub) ❤️`,
       `${buyerName} sent ${amount} lub to the mirror 🪞`,
       `${buyerName} is feeling the self-lub today (${amount}x) 🥰`,
+      `${buyerName} is having a lub affair with themselves (${amount}x) 💘`,
+      `${buyerName} just treated themselves to ${amount} lub 🌟`,
+      `${buyerName} is their own lub story (${amount}x) 📖`,
+      `${buyerName} found ${amount} reasons to self-lub 🦋`,
+      `${buyerName} is in a committed lub relationship with themselves (${amount}x) 💫`,
+      `${buyerName} just wrote a lub letter to themselves (${amount}x) ✉️`,
+      `${buyerName} is their own lub guru (${amount} times) 🧘‍♂️`,
+      `${buyerName}'s self-lub game is strong (${amount}x) 💪`,
     ];
     return selfLubMessages[Math.floor(Math.random() * selfLubMessages.length)];
   }
@@ -46,6 +54,16 @@ const getRandomMessage = (
     `${buyerName} sent a lub cascade (${amount}x) to ${recipientName} 💫`,
     `${buyerName} lub-bombed ${recipientName} ${amount} times 💝`,
     `${amount} lub energy from ${buyerName} to ${recipientName} 🌟`,
+    `${buyerName} just lub-ified ${recipientName}'s day (${amount}x) 🎉`,
+    `${buyerName} sent ${recipientName} a lub care package (${amount}x) 📦`,
+    `${buyerName} made it lub o'clock for ${recipientName} (${amount}x) ⏰`,
+    `${buyerName} unleashed a lub storm on ${recipientName} (${amount}x) ⚡️`,
+    `${buyerName} wrote ${recipientName} into their lub story (${amount}x) 📝`,
+    `${buyerName} just lub-leveled up with ${recipientName} (${amount}x) 🎮`,
+    `${buyerName} started a lub chain with ${recipientName} (${amount}x) ⛓️`,
+    `${buyerName} caught ${recipientName} in their lub web (${amount}x) 🕸️`,
+    `${buyerName} sent ${recipientName} on a lub adventure (${amount}x) 🗺️`,
+    `${buyerName} planted ${amount} lub seeds in ${recipientName}'s garden 🌱`,
   ];
 
   const specialMessages = [
@@ -53,12 +71,16 @@ const getRandomMessage = (
       ? [
           `${buyerName} nice-lubbed ${recipientName} 😏`,
           `${buyerName} sent ${recipientName} the nicest lub 👀`,
+          `${buyerName} found the magic lub number with ${recipientName} 🎲`,
+          `${buyerName} and ${recipientName} just hit peak lub harmony 🎵`,
         ]
       : []),
     ...(amount.toString() === "420"
       ? [
           `${buyerName} blazed ${recipientName} with maximum lub 🔥`,
           `${buyerName} hit ${recipientName} with that high lub energy ⚡️`,
+          `${buyerName} took ${recipientName} to lub paradise 🌴`,
+          `${buyerName} unlocked legendary lub status with ${recipientName} 🏆`,
         ]
       : []),
   ];
@@ -89,6 +111,26 @@ const lubPuns = [
   "Infinite lub glitch 🎮",
   "Task failed successfully: too much lub ❤️",
   "404: Lub not found (jk, found it!) 🔍",
+  "One does not simply walk into lub 🚶‍♂️",
+  "I lub therefore I am 🤔",
+  "Lub-ity lub lub 🎵",
+  "Lub happens 🦐",
+  "Lub finds a way 🦖",
+  "The lub is strong with this one 🌟",
+  "Lub me up, Scotty! 🖖",
+  "Lub goes brrr 📈",
+  "I came, I saw, I lubbed ⚔️",
+  "Lub never dies 💎",
+  "This is the way... to lub 🪖",
+  "Lub. James Lub. 🕴️",
+  "Lub-a-dub-dub 🛁",
+  "Lub your best life 🌈",
+  "Another day, another lub 🌅",
+  "Lub me like you do 💃",
+  "Lub at the speed of light ⚡️",
+  "Lub is coming 🐺",
+  "Winter is coming... but lub keeps us warm 🔥",
+  "I'll be lub 🤖",
 ];
 
 export function useLubActivity() {
