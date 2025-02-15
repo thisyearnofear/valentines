@@ -5,6 +5,12 @@ interface Config {
   agentAddress: string;
   googleApiKey: string;
   alchemyApiKey: string;
+  safe: {
+    rpcUrl: string;
+    chain: typeof sepolia;
+    agentAddress: string;
+    agentPrivateKey: string;
+  };
 }
 
 function validateConfig(): Config {
@@ -41,6 +47,12 @@ function validateConfig(): Config {
     agentAddress,
     googleApiKey,
     alchemyApiKey,
+    safe: {
+      rpcUrl: "https://rpc.ankr.com/eth_sepolia",
+      chain: sepolia,
+      agentAddress,
+      agentPrivateKey: formattedPrivateKey,
+    },
   };
 }
 
@@ -51,14 +63,6 @@ export const langsmith = {
   apiKey: process.env.LANGCHAIN_API_KEY,
   projectName: process.env.LANGCHAIN_PROJECT || "Safe Agent",
   tracing: process.env.LANGCHAIN_TRACING_V2 === "true",
-};
-
-// Safe Configuration
-export const safe = {
-  rpcUrl: "https://rpc.ankr.com/eth_sepolia",
-  chain: sepolia,
-  agentAddress: config.agentAddress,
-  agentPrivateKey: config.agentPrivateKey,
 };
 
 // Model Configuration

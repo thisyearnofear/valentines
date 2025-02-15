@@ -17,7 +17,7 @@ async function main() {
     }
 
     console.log("\n🔄 Creating new Safe...");
-    const { client, safeAddress } = await createSafeForAgent();
+    const { safe, safeAddress } = await createSafeForAgent();
 
     console.log("\n✅ Safe created successfully!");
     console.log("Safe Address:", safeAddress);
