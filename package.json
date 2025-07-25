@@ -13,12 +13,7 @@
     "test": "turbo run test",
     "dev:web": "turbo run dev --filter=web",
     "dev:agent": "turbo run dev --filter=agent",
-    "next:dev": "next dev --turbopack",
-    "next:build": "next build",
-    "start": "next start",
-    "next:lint": "next lint",
-    "test:agent": "tsx scripts/test-agent.ts",
-    "test:safe": "tsx scripts/test-safe-control.ts"
+    "codegen:data": "graphql-codegen --config packages/data/codegen.yml"
   },
   "dependencies": {
     "@farcaster/frame-sdk": "^0.0.27",
@@ -59,6 +54,11 @@
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/user-event": "^14.4.3",
     "jsdom": "^24.0.0",
+    "graphql": "^16.8.1",
+    "@graphql-codegen/cli": "^3.1.0",
+    "@graphql-codegen/typescript": "^3.2.1",
+    "@graphql-codegen/typescript-operations": "^3.0.4",
+    "@graphql-codegen/typescript-react-query": "^5.0.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -1,0 +1,16 @@
+schema: ${NEXT_PUBLIC_GRAPH_ENDPOINT}
+documents: "./graphql/**/*.graphql"
+require:
+  - ts-node/register
+generates:
+  ./src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-query"
+    config:
+      fetcher: "graphql-request"
+      exposeFetcher: true
+      fetchParams:
+        headers:
+          content-type: application/json

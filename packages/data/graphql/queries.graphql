@@ -1,0 +1,11 @@
+query GetClickStats {
+  clicks(first: 1, orderBy: timestamp, orderDirection: desc) {
+    id
+    amount
+    timestamp
+  }
+  ownershipShares(first: 10, orderBy: shares, orderDirection: desc) {
+    id
+    shares
+  }
+}
