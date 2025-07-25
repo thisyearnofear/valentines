@@ -1,0 +1,29 @@
+specVersion: 0.0.4
+description: lub-u ClickLub subgraph for Linea mainnet
+repository: https://github.com/your-org/lub-u
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ClickLub
+    network: linea-mainnet
+    source:
+      address: "0x51510fD1FB5b6528D514F6bb484835A45AD71698"
+      abi: ClickLub
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Click
+        - OwnershipShare
+      abis:
+        - name: ClickLub
+          file: ./abis/ClickLub.json
+      eventHandlers:
+        - event: ClicksAttributed(indexed address,indexed address,uint256)
+          handler: handleClicksAttributed
+        - event: OwnershipSharesCalculated(indexed address,uint256)
+          handler: handleOwnershipSharesCalculated
+      file: ./src/mapping.ts

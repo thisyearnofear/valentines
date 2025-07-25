@@ -1,0 +1,14 @@
+type Click @entity {
+  id: ID!
+  buyer: Bytes!
+  recipient: Bytes!
+  amount: BigInt!
+  txHash: Bytes!
+  timestamp: BigInt!
+}
+
+type OwnershipShare @entity {
+  id: ID!
+  user: Bytes!
+  shares: BigInt!
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@lub-u/subgraph",
+  "version": "0.1.0",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --product hosted-service <YOUR_SUBGRAPH_SLUG>"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.53.1",
+    "@graphprotocol/graph-ts": "^0.30.1"
+  }
+}
