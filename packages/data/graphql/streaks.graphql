@@ -1,0 +1,6 @@
+query GetLatestStreak($user: Bytes!) {
+  dailyStreaks(first: 1, where: { user: $user }, orderBy: timestamp, orderDirection: desc) {
+    streak
+    timestamp
+  }
+}
