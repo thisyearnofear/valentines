@@ -1,12 +1,22 @@
 {
-  "name": "givemelove-nextjs",
+  "name": "lub-u",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "dev:web": "turbo run dev --filter=web",
+    "dev:agent": "turbo run dev --filter=agent",
+    "next:dev": "next dev --turbopack",
+    "next:build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "next:lint": "next lint",
     "test:agent": "tsx scripts/test-agent.ts",
     "test:safe": "tsx scripts/test-safe-control.ts"
   },
