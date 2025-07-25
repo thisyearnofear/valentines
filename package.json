@@ -13,7 +13,8 @@
     "test": "turbo run test",
     "dev:web": "turbo run dev --filter=web",
     "dev:agent": "turbo run dev --filter=agent",
-    "codegen:data": "graphql-codegen --config packages/data/codegen.yml"
+    "codegen:data": "graphql-codegen --config packages/data/codegen.yml",
+    "agent:dev": "ts-node src/lib/agent.ts 'gm'"
   },
   "dependencies": {
     "@farcaster/frame-sdk": "^0.0.27",
