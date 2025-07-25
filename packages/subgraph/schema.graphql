@@ -12,3 +12,17 @@ type OwnershipShare @entity {
   user: Bytes!
   shares: BigInt!
 }
+
+type Raid @entity {
+  id: ID!
+  channelId: BigInt!
+  total: BigInt!
+  timestamp: BigInt!
+}
+
+type DailyStreak @entity {
+  id: ID!
+  user: Bytes!
+  streak: BigInt!
+  timestamp: BigInt!
+}

@@ -26,4 +26,30 @@ dataSources:
           handler: handleClicksAttributed
         - event: OwnershipSharesCalculated(indexed address,uint256)
           handler: handleOwnershipSharesCalculated
+        - event: RaidClicks(address,uint256,uint256)
+          handler: handleRaidClicks
+        - event: DailyStreak(address,uint256)
+          handler: handleDailyStreak
       file: ./src/mapping.ts
+
+templates:
+  - kind: ethereum/contract
+    name: ClickLubRaid
+    source:
+      abi: ClickLubRaid
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Raid
+        - DailyStreak
+      abis:
+        - name: ClickLubRaid
+          file: ./abis/ClickLubRaid.json
+      eventHandlers:
+        - event: RaidClicks(address,uint256,uint256)
+          handler: handleRaidClicks
+        - event: DailyStreak(address,uint256)
+          handler: handleDailyStreak
+      file: ./src/mappingRaid.ts

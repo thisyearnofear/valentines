@@ -1,10 +1,11 @@
 import { useGetClickStatsQuery } from "@lub-u/data";
 import { graphClient } from "@lub-u/data/src/client";
+import { Skeleton } from "@lub-u/ui";
 
 export default function StatsWidget() {
   const { data, isLoading, error } = useGetClickStatsQuery(graphClient);
 
-  if (isLoading) return <div>Loading stats...</div>;
+  if (isLoading) return <Skeleton size="lg" className="my-8 w-full max-w-xl h-16" />;
   if (error) return <div>Failed to load stats.</div>;
 
   const totalClicks =
