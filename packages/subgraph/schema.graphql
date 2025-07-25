@@ -14,8 +14,7 @@ type OwnershipShare @entity {
 }
 
 type Raid @entity {
-  id: ID!
-  channelId: BigInt!
+  id: ID! # channelId as string
   total: BigInt!
   timestamp: BigInt!
 }
