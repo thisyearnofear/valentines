@@ -1,0 +1,34 @@
+type Click @entity {
+  id: ID!
+  buyer: Bytes!
+  recipient: Bytes!
+  amount: BigInt!
+  txHash: Bytes!
+  timestamp: BigInt!
+}
+
+type OwnershipShare @entity {
+  id: ID!
+  user: Bytes!
+  shares: BigInt!
+}
+
+type Raid @entity {
+  id: ID! # channelId as string
+  total: BigInt!
+  timestamp: BigInt!
+}
+
+type DailyStreak @entity {
+  id: ID!
+  user: Bytes!
+  streak: BigInt!
+  timestamp: BigInt!
+}
+
+type Pet @entity {
+  id: ID!
+  owner: Bytes!
+  level: BigInt!
+  created: BigInt!
+}

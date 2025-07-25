@@ -1,0 +1,3 @@
+query GetRaidTotals($channelId: String!) {
+  raid(id: $channelId) { total timestamp }
+}

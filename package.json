@@ -1,14 +1,20 @@
 {
-  "name": "givemelove-nextjs",
+  "name": "lub-u",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "test:agent": "tsx scripts/test-agent.ts",
-    "test:safe": "tsx scripts/test-safe-control.ts"
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "dev:web": "turbo run dev --filter=web",
+    "dev:agent": "turbo run dev --filter=agent",
+    "codegen:data": "graphql-codegen --config packages/data/codegen.yml",
+    "agent:dev": "ts-node src/lib/agent.ts 'gm'"
   },
   "dependencies": {
     "@farcaster/frame-sdk": "^0.0.27",
@@ -38,10 +44,26 @@
     "tsx": "^4.19.2",
     "viem": "^2.23.2",
     "wagmi": "^2.5.6",
-    "zod": "^3.24.2"
+    "zod": "^3.24.2",
+    "@supabase/supabase-js": "^2.43.4",
+    "zustand": "^4.5.2",
+    "sonner": "^1.2.2",
+    "class-variance-authority": "^0.6.2",
+    "@pimlico/paymaster": "^0.0.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "eslint-plugin-turbo": "^1.10.0",
+    "vitest": "^1.5.0",
+    "@testing-library/react": "^14.2.2",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/user-event": "^14.4.3",
+    "jsdom": "^24.0.0",
+    "graphql": "^16.8.1",
+    "@graphql-codegen/cli": "^3.1.0",
+    "@graphql-codegen/typescript": "^3.2.1",
+    "@graphql-codegen/typescript-operations": "^3.0.4",
+    "@graphql-codegen/typescript-react-query": "^5.0.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
