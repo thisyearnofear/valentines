@@ -1,0 +1,1 @@
+// migrated from root tailwind.config.ts

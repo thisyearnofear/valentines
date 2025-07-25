@@ -9,8 +9,17 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+export default [
+  ...compat.extends(
+    "plugin:turbo/recommended",
+    "next/core-web-vitals",
+    "next"
+  ),
+  {
+    settings: {
+      next: {
+        rootDir: ["apps/web/"]
+      }
+    }
+  }
 ];
-
-export default eslintConfig;

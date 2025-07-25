@@ -1,0 +1,1 @@
+# Public assets for lub-u web app (migrated from root)
