@@ -25,3 +25,10 @@ type DailyStreak @entity {
   streak: BigInt!
   timestamp: BigInt!
 }
+
+type Pet @entity {
+  id: ID!
+  owner: Bytes!
+  level: BigInt!
+  created: BigInt!
+}

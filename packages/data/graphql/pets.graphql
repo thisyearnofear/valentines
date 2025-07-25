@@ -1,0 +1,6 @@
+query GetMyPets($owner: Bytes!) {
+  pets(where: { owner: $owner }) {
+    id
+    level
+  }
+}
